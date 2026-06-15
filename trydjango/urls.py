@@ -21,9 +21,11 @@ from django.urls import re_path
 
 urlpatterns = [
     path('', views.articles),
-    path('articles/new/', views.New),
+    path('articles/new/', views.new),
     path('articles/create', views.create),
     path('articles/<int:id>/', views.article),
+    path('articles/<int:id>/edit', views.edit),
+    path('articles/<int:id>/update', views.update),
     # re_path(r'^article/(?P<id>\d+)/$', article, name='article'), another way of defining urls, but it is not recommended.
     path('admin/', admin.site.urls),
 ]

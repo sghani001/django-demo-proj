@@ -15,7 +15,7 @@ def articles(request):
 
 
 
-def New(request):
+def new(request):
     article = Article.objects.create(title='', content='')
     return render(request, 'articles/create.html', {'article': article})
 
@@ -27,6 +27,32 @@ def create(request):
         return render(request, 'articles/details.html', {'article': article})
     else:
         return render(request, 'articles/create.html', {'article': None})
+    
+def edit(request, id=None):
+    if id is None:
+        return render(request, 'articles/update.html', {'article': None})
+    
+    try:
+        article = Article.objects.get(id=id)
+    except Article.DoesNotExist:
+        article = None
+    
+    return render(request, 'articles/update.html', {'article': article})
+
+def update(request, id=None):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        try:
+            article = Article.objects.get(id=id)
+            article.title = title
+            article.content = content
+            article.save()
+            return render(request, 'articles/details.html', {'article': article})
+        except Article.DoesNotExist:
+            return render(request, 'articles/update.html', {'article': None, 'error_message': 'Article not found.'})
+    else:
+        return render(request, 'articles/update.html', {'article': None})
 
 def article(request, id=None):
     if id is None:

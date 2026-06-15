@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Article{% endblock %}
+
+{% block content %}
+{% if error_message %}
+	<p class="text-red-500">{{ error_message }}</p>
+{% endif %}
+<h2 class="text-2xl font-semibold mb-2">Update Article</h2>
+<form method="post" action="/articles/{{ article.id }}/update" class="space-y-4">
+	{% csrf_token %} <input type="text" name="title" placeholder="Title" value="{{ article.title }}" class="w-full p-2 border border-gray-300 rounded">
+	<textarea name="content" placeholder="Content" class="w-full p-2 border border-gray-300 rounded">{{ article.content }}</textarea>
+	<button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Update Article</button>
+</form>
+{% endblock %}
