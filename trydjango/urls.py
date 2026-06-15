@@ -21,6 +21,8 @@ from django.urls import re_path
 
 urlpatterns = [
     path('', views.articles),
+    path('articles/new/', views.New),
+    path('articles/create', views.create),
     path('articles/<int:id>/', views.article),
     # re_path(r'^article/(?P<id>\d+)/$', article, name='article'), another way of defining urls, but it is not recommended.
     path('admin/', admin.site.urls),

@@ -8,12 +8,18 @@
     <body class="bg-gray-100 text-gray-900">
         <div class="max-w-4xl mx-auto p-6">
         <h1 class="text-3xl font-bold mb-4">Demo Django Project</h1>
+        <form type="submit" action="/" method="GET">
+            <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2 mt-2">Home</button>
+        </form>
         <form class="mb-4" action="" method="GET">
             <input type="text" name="q" placeholder="Search..." class="border border-gray-300 rounded px-3 py-2 w-50">
             <input type="submit" value="Search" class="bg-blue-500 text-white rounded px-4 py-2 mt-2">
         </form>
         <form class="mb-4" action="" method="GET">
             <input type="submit" value="Clear" class="bg-blue-500 text-white rounded px-4 py-2 mt-2">
+        </form>
+        <form class="mb-4" action="/articles/new/" method="GET">
+            <button type="submit" method="GET" class="bg-blue-500 text-white rounded px-4 py-2 mt-2">Create New</button>
         </form>
         {% block content %}
         <div class="prose lg:prose-xl">

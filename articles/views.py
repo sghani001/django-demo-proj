@@ -15,6 +15,19 @@ def articles(request):
 
 
 
+def New(request):
+    article = Article.objects.create(title='', content='')
+    return render(request, 'articles/create.html', {'article': article})
+
+def create(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        article = Article.objects.create(title=title, content=content)
+        return render(request, 'articles/details.html', {'article': article})
+    else:
+        return render(request, 'articles/create.html', {'article': None})
+
 def article(request, id=None):
     if id is None:
         return render(request, 'articles/details.html', {'article': None})
